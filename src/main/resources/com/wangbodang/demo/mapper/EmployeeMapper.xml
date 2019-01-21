@@ -213,4 +213,17 @@
     select max(id)
     from employee
   </select>
+
+  <insert id="batchInsertEmp" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    insert into employee
+    (name, age, remark)
+    values 
+    <foreach collection="list" separator="," index="index" item="emp">
+       (
+        #{emp.name},
+        #{emp.age},
+        #{emp.remark}
+       )
+    </foreach>
+  </insert>
 </mapper>

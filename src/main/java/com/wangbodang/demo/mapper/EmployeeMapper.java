@@ -2,6 +2,8 @@ package com.wangbodang.demo.mapper;
 
 import com.wangbodang.demo.entity.Employee;
 
+import java.util.List;
+
 public interface EmployeeMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +18,6 @@ public interface EmployeeMapper {
     int updateByPrimaryKey(Employee record);
 
     Integer findMaxId();
+
+    int batchInsertEmp(List<Employee> empList);
 }

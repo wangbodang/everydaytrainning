@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class mybatisProcessMysql {
 
@@ -20,22 +22,6 @@ public class mybatisProcessMysql {
     public void insertManyRecords(){
         String resource = "mybatis-conf/mybatis-conf.xml";
         try {
-            /*InputStream inputStream = Resources.getResourceAsStream(resource);
-            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-
-            //使用Oracle数据源
-            System.out.println("---->使用Oracle数据源");
-            SqlSession sqlSession = sqlSessionFactory.openSession();
-            ZzjgMapper zzjgMapper = sqlSession.getMapper(ZzjgMapper.class);
-            List<ZzjgEntity> list = zzjgMapper.findAll();
-            int rows = 0;
-            for(ZzjgEntity zzjg:list) {
-                System.out.println(zzjg);
-                rows++;
-                if(rows>5) {
-                    break;
-                }
-            }*/
 
             //使用Mysql数据源
             System.out.println("\n\n\n--->使用Mysql数据源");
@@ -127,6 +113,41 @@ public class mybatisProcessMysql {
 
             long endTime = System.currentTimeMillis();
             System.out.println("---> 插入"+counts+"条记录, 共用时:"+(endTime-startTime)/1000+"秒");
+            mysql_SqlSession.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    //测试 批量插入 更新的语名
+    @Test
+    public void testBatchInsert(){
+        String resource = "mybatis-conf/mybatis-conf.xml";
+        try {
+
+            System.out.println("\n\n\n--->使用Mysql数据源");
+            //再获得一遍
+            InputStream inputStream = Resources.getResourceAsStream(resource);
+            SqlSessionFactory mysql_sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream, "dev_mysql");
+
+            SqlSession mysql_SqlSession = mysql_sqlSessionFactory.openSession();
+            EmployeeMapper employeeMapper = mysql_SqlSession.getMapper(EmployeeMapper.class);
+
+            List<Employee> empList = new ArrayList<>();
+            for(int i=0;i<5;i++){
+                Employee emp1 = new Employee();
+                emp1.setName("John"+i);
+                emp1.setAge(33+i);
+                emp1.setRemark("St.John"+i);
+                empList.add(emp1);
+            }
+            int rows = employeeMapper.batchInsertEmp(empList);
+            System.out.println("\n===>插入的记录数为:"+rows);
+            for(Employee emp:empList){
+                System.out.println("->"+emp.getId());
+            }
+            mysql_SqlSession.commit();
             mysql_SqlSession.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
