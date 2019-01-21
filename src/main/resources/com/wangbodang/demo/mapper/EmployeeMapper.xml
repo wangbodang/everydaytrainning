@@ -238,7 +238,7 @@
 
   -->
   <!--批量更新-->
-  <update id="batchUpdateEmp">
+  <update id="batchUpdateEmp" parameterType="java.util.List">
       update employee set remark = case
                                       <foreach collection="list" index="index" separator=" " item="emp">
                                         when id = #{emp.id} then #{emp.remark}

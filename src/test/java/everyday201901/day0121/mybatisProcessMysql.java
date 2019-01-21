@@ -183,8 +183,8 @@ public class mybatisProcessMysql {
         for(int i=11005;i<11022;i++){
             Employee emp = employeeMapper.selectByPrimaryKey(i);
             if(emp!=null){
-                emp.setRemark("St.John remark..."+i);
-                emp.setSummary("使徒约翰..."+i*3);
+                emp.setRemark("St.John remark..."+i*7);
+                emp.setSummary("使徒约翰..."+i*2);
                 empList.add(emp);
             }
         }
