@@ -1,0 +1,15 @@
+RequestMapping  value method
+参数类型
+springMVC 请求方法中出现的类型
+
+返回的对象
+ModelAndView
+Model
+Map
+View
+String
+
+<mvc:resources.....>
+
+model.addAttribute
+
