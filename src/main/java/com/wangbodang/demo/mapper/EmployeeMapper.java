@@ -20,4 +20,6 @@ public interface EmployeeMapper {
     Integer findMaxId();
 
     int batchInsertEmp(List<Employee> empList);
+
+    int batchUpdateEmp(List<Employee> empList);
 }

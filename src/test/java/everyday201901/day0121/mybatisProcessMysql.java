@@ -183,11 +183,16 @@ public class mybatisProcessMysql {
         for(int i=11005;i<11022;i++){
             Employee emp = employeeMapper.selectByPrimaryKey(i);
             if(emp!=null){
+                emp.setRemark("St.John remark..."+i);
+                emp.setSummary("使徒约翰..."+i*3);
                 empList.add(emp);
             }
         }
         //批量更新
-
         System.out.println("--->查询的个数:"+empList.size());
+
+        int updateRows = employeeMapper.batchUpdateEmp(empList);
+        System.out.println("--->更新的个数为:"+updateRows);
+        sqlSession.commit();
     }
 }

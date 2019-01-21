@@ -226,4 +226,31 @@
        )
     </foreach>
   </insert>
+
+  <!--
+    UPDATE test.emp SET gender = CASE WHEN id = 11001 THEN '3'
+				                      WHEN id = 11002 THEN '0'
+		                         END,
+                        Hiredate = CASE WHEN id = 11001 THEN '2028-03-16'
+                                        WHEN id = 11002 THEN '2013-09-29'
+                                   END
+		    WHERE id IN (11001);
+
+  -->
+  <!--批量更新-->
+  <update id="batchUpdateEmp">
+      update employee set remark = case
+                                      <foreach collection="list" index="index" separator=" " item="emp">
+                                        when id = #{emp.id} then #{emp.remark}
+                                      </foreach>
+                                   end,
+                          summary = case
+                                      <foreach collection="list" index="index" separator=" " item="emp">
+                                        when id = #{emp.id} then #{emp.summary}
+                                      </foreach>
+                                    end
+             where id in  <foreach collection="list" index="index" separator="," item="emp" open="(" close=")">
+                              #{emp.id}
+                          </foreach>
+  </update>
 </mapper>
