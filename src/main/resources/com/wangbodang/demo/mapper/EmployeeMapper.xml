@@ -209,4 +209,8 @@
       testdate = #{testdate,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findMaxId" resultType="int">
+    select max(id)
+    from employee
+  </select>
 </mapper>
