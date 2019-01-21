@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangbodang.demo.mapper.EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.wangbodang.demo.entity.Employee" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="DOUBLE" />
+    <result column="hiredate" property="hiredate" jdbcType="DATE" />
+    <result column="hiredatePeriod" property="hiredatePeriod" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="decimalNumber" property="decimalNumber" jdbcType="DECIMAL" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="gendercn" property="gendercn" jdbcType="VARCHAR" />
+    <result column="officedate" property="officedate" jdbcType="VARCHAR" />
+    <result column="testdate" property="testdate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, age, gender, salary, hiredate, hiredatePeriod, remark, summary, decimalNumber, 
+    idcard, birthday, gendercn, officedate, testdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from employee
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wangbodang.demo.entity.Employee" >
+    insert into employee (id, name, age, 
+      gender, salary, hiredate, 
+      hiredatePeriod, remark, summary, 
+      decimalNumber, idcard, birthday, 
+      gendercn, officedate, testdate
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{gender,jdbcType=VARCHAR}, #{salary,jdbcType=DOUBLE}, #{hiredate,jdbcType=DATE}, 
+      #{hiredatePeriod,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{decimalNumber,jdbcType=DECIMAL}, #{idcard,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{gendercn,jdbcType=VARCHAR}, #{officedate,jdbcType=VARCHAR}, #{testdate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangbodang.demo.entity.Employee" >
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="hiredate != null" >
+        hiredate,
+      </if>
+      <if test="hiredatePeriod != null" >
+        hiredatePeriod,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="decimalNumber != null" >
+        decimalNumber,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="gendercn != null" >
+        gendercn,
+      </if>
+      <if test="officedate != null" >
+        officedate,
+      </if>
+      <if test="testdate != null" >
+        testdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=DOUBLE},
+      </if>
+      <if test="hiredate != null" >
+        #{hiredate,jdbcType=DATE},
+      </if>
+      <if test="hiredatePeriod != null" >
+        #{hiredatePeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="decimalNumber != null" >
+        #{decimalNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="gendercn != null" >
+        #{gendercn,jdbcType=VARCHAR},
+      </if>
+      <if test="officedate != null" >
+        #{officedate,jdbcType=VARCHAR},
+      </if>
+      <if test="testdate != null" >
+        #{testdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangbodang.demo.entity.Employee" >
+    update employee
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=DOUBLE},
+      </if>
+      <if test="hiredate != null" >
+        hiredate = #{hiredate,jdbcType=DATE},
+      </if>
+      <if test="hiredatePeriod != null" >
+        hiredatePeriod = #{hiredatePeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="decimalNumber != null" >
+        decimalNumber = #{decimalNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="gendercn != null" >
+        gendercn = #{gendercn,jdbcType=VARCHAR},
+      </if>
+      <if test="officedate != null" >
+        officedate = #{officedate,jdbcType=VARCHAR},
+      </if>
+      <if test="testdate != null" >
+        testdate = #{testdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangbodang.demo.entity.Employee" >
+    update employee
+    set name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=DOUBLE},
+      hiredate = #{hiredate,jdbcType=DATE},
+      hiredatePeriod = #{hiredatePeriod,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      decimalNumber = #{decimalNumber,jdbcType=DECIMAL},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      gendercn = #{gendercn,jdbcType=VARCHAR},
+      officedate = #{officedate,jdbcType=VARCHAR},
+      testdate = #{testdate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

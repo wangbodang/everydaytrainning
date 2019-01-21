@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 查找属性  -->
+	<properties resource="mybatis-conf/db.properties"></properties>
+  
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${jdbc_driverClassName}"/>
+        <property name="url" value="${jdbc_url}"/>
+        <property name="username" value="${jdbc_username}"/>
+        <property name="password" value="${jdbc_password}"/>
+        <!-- <property name="validationQuery" value="${validationQuery}"/> -->
+      </dataSource>
+    </environment>
+    <environment id="dev_mysql">
+    	<transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${mysql_driverClassName}"/>
+        <property name="url" value="${mysql_url}"/>
+        <property name="username" value="${mysql_username}"/>
+        <property name="password" value="${mysql_password}"/>
+        <!-- <property name="validationQuery" value="${mysql_validationQuery}"/> -->
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <!--<mapper resource="com/wangbodang/demo/mapper/ZzjgMapper.xml"/>-->
+    <mapper resource="com/wangbodang/demo/mapper/EmployeeMapper.xml"/>
+  </mappers>
+</configuration>

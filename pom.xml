@@ -40,6 +40,17 @@
           <artifactId>commons-collections4</artifactId>
           <version>4.1</version>
       </dependency>
+      <!-- 持久导包 -->
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.40</version>
+      </dependency>
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis</artifactId>
+          <version>3.4.5</version>
+      </dependency>
   </dependencies>
 
   <build>
