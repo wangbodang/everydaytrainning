@@ -6,6 +6,8 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -14,6 +16,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class mybatisProcessMysql {
+
+    private SqlSessionFactory sqlSessionFactory;
+    private SqlSession sqlSession;
+    @Before
+    public void init(){
+        String resource = "mybatis-conf/mybatis-conf.xml";
+        try {
+            InputStream inputStream = Resources.getResourceAsStream(resource);
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream, "dev_mysql");
+            sqlSession = sqlSessionFactory.openSession();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @After
+    public void destory(){
+        sqlSession.close();
+    }
 
     /***
      * 测试下
@@ -153,5 +173,21 @@ public class mybatisProcessMysql {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    //批量更新
+    @Test
+    public void testBatchUpdate(){
+        EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+        List<Employee> empList = new ArrayList<>();
+        for(int i=11005;i<11022;i++){
+            Employee emp = employeeMapper.selectByPrimaryKey(i);
+            if(emp!=null){
+                empList.add(emp);
+            }
+        }
+        //批量更新
+
+        System.out.println("--->查询的个数:"+empList.size());
     }
 }
