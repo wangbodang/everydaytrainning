@@ -1,0 +1,8 @@
+@RequestParam
+
+@PathVariable
+
+@ModelAttribute 注解方法或参数
+
+Model 类型
+
