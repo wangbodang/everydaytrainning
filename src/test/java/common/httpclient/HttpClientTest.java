@@ -1,5 +1,10 @@
 package common.httpclient;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wangbodang.demo.entity.User;
+import common.domain.Dict;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -33,6 +38,26 @@ public class HttpClientTest {
         paramMap.put("type","weapon_type");
         String res = doGet(url, paramMap);
         System.out.println(res);
+
+        /**
+         * ObjectMapper是JSON操作的核心，Jackson的所有JSON操作都是在ObjectMapper中实现。
+         * ObjectMapper有多个JSON序列化的方法，可以把JSON字符串保存File、OutputStream等不同的介质中。
+         * writeValue(File arg0, Object arg1)把arg1转成json序列，并保存到arg0文件中。
+         * writeValue(OutputStream arg0, Object arg1)把arg1转成json序列，并保存到arg0输出流中。
+         * writeValueAsBytes(Object arg0)把arg0转成json序列，并把结果输出成字节数组。
+         * writeValueAsString(Object arg0)把arg0转成json序列，并把结果输出成字符串。
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        try {
+            JavaType jt = mapper.getTypeFactory().constructParametricType(ArrayList.class, Dict.class);
+            List<Dict> urlist = mapper.readValue(res, jt);
+            for(Dict d:urlist){
+                System.out.println(d);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static String doGet(String url, Map<String, String> param) {
@@ -55,7 +80,7 @@ public class HttpClientTest {
             // 创建http GET请求
             HttpGet httpGet = new HttpGet(uri);
             //httpPost.setHeader("Cookies",cookies);
-            httpGet.setHeader("Cookie", "jeesite.session.id=093ee5d09fd843c1a8a9a931dd3ce8a2");
+            httpGet.setHeader("Cookie", "jeesite.session.id=053f1b6ce8b84b30a74dc5a7515c7bbc");
             // 执行请求
             response = httpclient.execute(httpGet);
             // 判断返回状态是否为200
