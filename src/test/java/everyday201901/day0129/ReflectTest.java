@@ -11,6 +11,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
  * Reflect
@@ -60,8 +61,16 @@ public class ReflectTest {
             Object value = method.invoke(emp);
 
             System.out.println(key + ":" + value);
-
         }
+    }
+
+    @Test
+    public void test05(){
+        RealObject real = new RealObject();
+        MyInterface myInterface = (MyInterface)Proxy.newProxyInstance(MyInterface.class.getClassLoader(), new Class[]{MyInterface.class}, new MyDynamicProxyHandler(real));
+
+        myInterface.doSomething();
+        myInterface.somethingElse("wangbodang");
 
     }
 }
