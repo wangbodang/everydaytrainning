@@ -146,11 +146,11 @@ public class Employee {
         this.officedate = officedate == null ? null : officedate.trim();
     }
 
-    public String getTestdate() {
+    /*public String getTestdate() {
         return testdate;
     }
 
     public void setTestdate(String testdate) {
         this.testdate = testdate == null ? null : testdate.trim();
-    }
+    }*/
 }
