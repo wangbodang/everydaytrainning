@@ -22,7 +22,7 @@ public class PoiExcelToHtml {
 
     @Test
     public void excelConvertToHtml(){
-        String xlsFile = "excelTemp/Book1.xls";
+        String xlsFile = "excelTemp/Book2.xls";
         InputStream xlsInputStream = this.getClass().getClassLoader().getResourceAsStream(xlsFile);
 
 
