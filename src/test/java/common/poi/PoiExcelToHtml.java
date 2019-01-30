@@ -74,10 +74,11 @@ public class PoiExcelToHtml {
 
             out = new FileOutputStream(htmlFile);
             content = writer.toString();
+
             //替换掉Sheet1 Sheet2 Sheet3...
             content = content.replaceAll("<h2>Sheet[\\d]</h2>", "")
                     .replaceAll("<h2>第[一二三四五六七八九十壹贰叁肆伍陆柒捌玖拾]页</h2>", "");
-
+            System.out.println("\n+++++++++++++++++++++++++++++++++++++++\n---> Html文件为:\n"+content);
             out.write(content.getBytes("UTF-8"));
             out.flush();
             out.close();
