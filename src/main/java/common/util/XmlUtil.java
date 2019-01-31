@@ -35,7 +35,7 @@ public class XmlUtil {
     	LOGGER.info("xml转对象开始 clazz={},xml={}",clazz,trim);
         //创建解析XML对象
         XStream xStream = new XStream(new DomDriver());
-        //xStream.ignoreUnknownElements();
+        xStream.ignoreUnknownElements();
         //处理注解
         xStream.processAnnotations(clazz);
 		@SuppressWarnings("unchecked")
@@ -55,7 +55,7 @@ public class XmlUtil {
         XStream xStream = new XStream(new DomDriver());
         xStream.processAnnotations(obj.getClass());
         LOGGER.info("对象转xml结束 obj={}",obj);
-        return "<?xml version=\"1.0\" encoding=\"gb2312\"?>\r\n"+xStream.toXML(obj);
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"+xStream.toXML(obj);
     }
 
 }
