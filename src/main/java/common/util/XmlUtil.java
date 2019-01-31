@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 public class XmlUtil {
 	/**
 	 * log
-	 *//*
+	 */
 	private final static Logger  LOGGER = LoggerFactory.getLogger(XmlUtil.class);
 	
 	static {
@@ -23,19 +23,19 @@ public class XmlUtil {
 		System.setProperty("javax.xml.parsers.DocumentBuilderFactory","com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl");
 	}
 	
-	*//**
+	/**
      * XML转对象
      * @param clazz 对象类
-     * @param str xml字符串
+     * @param xml xml字符串
      * @param <T> T
      * @return
-     *//*
+     */
     public static <T> T parseFromXml(Class<T> clazz, String xml) {
     	String trim = xml.trim();
     	LOGGER.info("xml转对象开始 clazz={},xml={}",clazz,trim);
         //创建解析XML对象
         XStream xStream = new XStream(new DomDriver());
-        xStream.ignoreUnknownElements();
+        //xStream.ignoreUnknownElements();
         //处理注解
         xStream.processAnnotations(clazz);
 		@SuppressWarnings("unchecked")
@@ -45,11 +45,11 @@ public class XmlUtil {
         return t;
     }
     
-    *//**
+    /**
      * 对象转xml
      * @param obj 对象
      * @return
-     *//*
+     */
     public static String toXml(Object obj) {
     	LOGGER.info("对象转xml开始 obj={}",obj);
         XStream xStream = new XStream(new DomDriver());
@@ -57,6 +57,5 @@ public class XmlUtil {
         LOGGER.info("对象转xml结束 obj={}",obj);
         return "<?xml version=\"1.0\" encoding=\"gb2312\"?>\r\n"+xStream.toXML(obj);
     }
-*/
-	
+
 }
