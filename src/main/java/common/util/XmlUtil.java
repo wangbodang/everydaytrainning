@@ -1,7 +1,7 @@
 package common.util;
 
-//import com.thoughtworks.xstream.XStream;
-//import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
