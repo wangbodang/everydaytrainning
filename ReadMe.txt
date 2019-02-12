@@ -13,3 +13,8 @@ xml 解析对象 对象解析为xml
 
 xerces
 xstream
+
+**********************************************
+02/12
+ByteArrayOutputStream ByteArrayInputStream 在转码时的编码
+Appache-Commons  8 jars
