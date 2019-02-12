@@ -3,6 +3,7 @@ package common.stream;
 import org.junit.Test;
 
 import java.io.*;
+import java.nio.charset.Charset;
 
 /**
  * 测试
@@ -31,4 +32,9 @@ public class ByteArrayOutputStreamTest {
         baos.close();
     }
 
+    @Test
+    public void CharsetTest(){
+        String defaultCharset = Charset.defaultCharset().name();
+        System.out.println(defaultCharset);
+    }
 }
