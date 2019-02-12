@@ -77,6 +77,19 @@
           <artifactId>thumbnailator</artifactId>
           <version>0.4.8</version>
       </dependency>
+      <!-- slfj -->
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>1.7.25</version>
+      </dependency>
+      <!--xstream-->
+      <dependency>
+          <groupId>com.thoughtworks.xstream</groupId>
+          <artifactId>xstream</artifactId>
+          <version>1.4.9</version>
+      </dependency>
+
 
   </dependencies>
 
