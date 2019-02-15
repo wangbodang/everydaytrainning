@@ -61,4 +61,30 @@ public class StringTest {
 
         System.out.println(SplitStringByLength.getJymWithBlank(jym,5));
     }
+
+    /**
+     * 建筑服务发生地截取
+     */
+    @Test
+    public void testSpiltByAddr(){
+        //String bz = "项目名称：马钢晋西轮轴项目一期货车、客车轮对厂房和成品库 厂房总包工程 \r\n项目地址：安徽马鞍山经济开发区";
+        String bz = "项目名称：郑州市中原新区三十里铺安置区项目中地块一标段 \n" +
+                "项目地址：绕城高速辅道以东、奇秀路以西、阳春北路以南、阳春路以北区域";
+        String[] bzArr = bz.split("\n");
+        System.out.println(bzArr[0].length());
+
+        String xmmc = "项目名称：郑州市中原新区三十里铺安置区项目中地块一";
+        System.out.println(xmmc.length());
+    }
+
+    @Test
+    public void testStringSplitLength(){
+        String xmmc = "项目名称：郑州市中原新区三十里铺安置区项目中地块一标段项目名称：郑州市中原新区三十里铺安置区项目";
+        int bzLineCounts = 25;
+        int rows = (xmmc.length()%bzLineCounts == 0)?xmmc.length()/bzLineCounts:(xmmc.length()/bzLineCounts+1);
+        System.out.println(rows);
+        for(int i=0;i<rows;i++){
+            System.out.println(xmmc.substring(i*bzLineCounts, (i+1)*bzLineCounts));
+        }
+    }
 }
