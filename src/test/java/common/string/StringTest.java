@@ -1,10 +1,12 @@
 package common.string;
 
 import common.util.AmountNumberToCN;
+import common.util.SplitStringByLength;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class StringTest {
 
@@ -42,5 +44,21 @@ public class StringTest {
     public void testAmountToCn(){
         BigDecimal bd = new BigDecimal(18330001.00);
         System.out.println(AmountNumberToCN.number2CNMontrayUnit(bd));
+    }
+
+    /**
+     * 校验码, 四位中间加一个空格
+     */
+    @Test
+    public void testJYM(){
+        String jym = "73976603510708735039";
+        System.out.println(jym.length());
+
+        List<String> jymList = SplitStringByLength.getStrList(jym, 5);
+        for(String s:jymList){
+            System.out.println(s);
+        }
+
+        System.out.println(SplitStringByLength.getJymWithBlank(jym,5));
     }
 }
