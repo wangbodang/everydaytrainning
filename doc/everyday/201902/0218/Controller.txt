@@ -1,0 +1,41 @@
+@RequestMapping("/getqrcodepng")
+    @ResponseBody
+    public ResponseData getQrcodePng(HttpServletRequest req, HttpServletResponse res){
+        ResponseData responseData = new ResponseData();
+        String qrCodePath = null;
+        Random random = new Random();
+        int randInt = random.nextInt(100);
+        logger.info("\n===>随机数为:"+randInt);
+        if(randInt%2==0){
+            qrCodePath = Paths.get("C:"+File.separator+"TestQrCode.png").toString();
+        }else{
+            qrCodePath = Paths.get("C:"+File.separator+"6666.png").toString();
+        }
+
+        File qrCodeFile = new File(qrCodePath);
+        if(qrCodeFile.exists()){
+            logger.info("\n===>存在图片文件");
+            responseData.setMsg("存在图片文件");
+        }else{
+            logger.info("\n===>不存在图片文件");
+            responseData.setMsg("存在图片文件");
+            return responseData;
+        }
+
+        byte[] data = null;
+        try {
+            InputStream is = new FileInputStream(qrCodeFile);
+            data = new byte[is.available()];
+            is.read(data);
+            is.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BASE64Encoder encoder = new BASE64Encoder();
+        String r = encoder.encode(data);
+        //logger.info("\n===> 转换的串为:"+r);
+        responseData.setData(r);
+        return responseData;
+    }

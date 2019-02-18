@@ -1,0 +1,32 @@
+#set($title='导出Excel表Demo')
+##这个页面只是测试Excel下载 该页面的请求地址:
+## http://127.0.0.1:8080/mytest/topage
+<div class="easyui-panel"
+     id="mainPanel" data-options="title:'测试显示二维码', width:800, height:400">
+    <p>Fook</p>
+    <p>
+        <a class="easyui-linkbutton" data-options="text:'click me'" onclick="getImg()"></a>
+    </p>
+    <p>
+        ##<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0 DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="">
+    </p>
+    <p>
+        <img id="qrCodePng" onclick="getImg()"/>
+    </p>
+</div>
+
+<script>
+    $(function () {
+        getImg();
+        $("#qrCodePng").css("width", '200px').css("height", "200px");
+    })
+
+    function getImg() {
+        var url = "/mytest/getqrcodepng";
+        $.get(url, function (resultObj) {
+            ##$.messager.alert("提示", "消息:<br>"+resultObj.msg, "info");
+            ##console.log("--->转码值为:"+resultObj.data);
+            $("#qrCodePng").attr('src', "data:image/png;base64,"+resultObj.data);
+        }, 'json')
+    }
+</script>
