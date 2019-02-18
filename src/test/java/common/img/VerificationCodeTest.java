@@ -3,6 +3,7 @@ package common.img;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,8 +29,14 @@ public class VerificationCodeTest {
         //生成图片
         BufferedImage bufferedImage = new BufferedImage(200, 40, BufferedImage.TYPE_4BYTE_ABGR_PRE);
 
+        Graphics2D g = bufferedImage.createGraphics();
 
+        Font font = new Font("宋体", Font.PLAIN, 20);
+        g.setFont(font);
+        g.setColor(new Color(255, 255, 255));
+        g.drawString(rInt+"", 0, 0);
 
         ImageIO.write(bufferedImage, "jpg", fos);
+        fos.close();
     }
 }
