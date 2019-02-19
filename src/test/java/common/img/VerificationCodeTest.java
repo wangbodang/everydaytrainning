@@ -1,5 +1,6 @@
 package common.img;
 
+import common.util.VerifyCodeUtil;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -27,16 +28,32 @@ public class VerificationCodeTest {
         FileOutputStream fos = new FileOutputStream(destFile);
 
         //生成图片
-        BufferedImage bufferedImage = new BufferedImage(200, 40, BufferedImage.TYPE_4BYTE_ABGR_PRE);
+        BufferedImage bufferedImage = new BufferedImage(200, 40, BufferedImage.TYPE_INT_RGB);
 
         Graphics2D g = bufferedImage.createGraphics();
+        g.setColor(Color.WHITE);
+        g.fillRect(0,0,200,40);//填充整个屏幕
 
-        Font font = new Font("宋体", Font.PLAIN, 20);
+        Font font = new Font("微软雅黑", Font.ITALIC, 30);
         g.setFont(font);
-        g.setColor(new Color(255, 255, 255));
-        g.drawString(rInt+"", 0, 0);
+        g.setColor(Color.red);
+        g.drawLine(0, 0, 200, 40);
+        g.drawString(rInt+"Fook", 5, 30);
 
         ImageIO.write(bufferedImage, "jpg", fos);
         fos.close();
     }
+
+    /**
+     * 用工具类生成
+     */
+    @Test
+    public void testVerifyCodeUtil() throws IOException {
+        String verifyCode = VerifyCodeUtil.generateVerifyCode(5);
+        System.out.println(verifyCode);
+        BufferedImage verifyCodeImg = VerifyCodeUtil.getImage(200, 40, verifyCode);
+        ImageIO.write(verifyCodeImg, "png", new File("D:/TEST/XXXXX.png"));
+    }
+
+
 }
