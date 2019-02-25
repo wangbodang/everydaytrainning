@@ -98,4 +98,40 @@ public class processExcelDataType {
         }
         return "";
     }
+
+    /**
+     * 测试Excel的格式类型
+     * 结论:
+     * 文本 CellType = 1
+     * 其他 CellType = 0
+     */
+    @Test
+    public void testExcelAllType(){
+        String xlsFile = "excelTemp/excelDataType.xls";
+        InputStream xlsInputStream = this.getClass().getClassLoader().getResourceAsStream(xlsFile);
+        try {
+            if (xlsInputStream == null) {
+                throw new Exception("没有找到文件");
+            }
+            HSSFWorkbook workbook = new HSSFWorkbook(xlsInputStream);
+            if (workbook == null) {
+                throw new Exception("无法创建工作表");
+            }
+
+            HSSFSheet sheet0 = workbook.getSheetAt(0);
+            HSSFRow row1 = sheet0.getRow(1);
+
+            short startCell = row1.getFirstCellNum();
+            System.out.println("第一个Cell的索引为:"+startCell);
+            short endCell = row1.getLastCellNum();
+            System.out.println("最后一个Cell的索引为:"+endCell);
+
+            for(int i=startCell;i<endCell;i++){
+                System.out.println("格式为:"+row1.getCell(i).getCellType());
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
