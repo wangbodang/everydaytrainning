@@ -12,4 +12,13 @@ public class CommonsLangTest {
 
         System.out.println(StringUtils.center(" wangbodang ", 80, "="));
     }
+
+    @Test
+    public void leftPadTest(){
+        int i=1;
+        for(;i<1000;i++){
+            String t = StringUtils.leftPad(String.valueOf(i), 3, "0");
+            System.out.println(t);
+        }
+    }
 }
