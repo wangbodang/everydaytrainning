@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ListTest {
@@ -42,5 +43,22 @@ public class ListTest {
 
         System.out.println(StringUtils.join(demoList, ","));
 
+    }
+
+    /**
+     * 3.使用Collections.addAll()
+     *
+     * List<String> resultList = new ArrayList<>(array.length);
+     * Collections.addAll(resultList,array);
+     */
+    @Test
+    public void testCollectionsAddToList(){
+        String[] demoArr = new String[]{"aaa", "bbb", "ccc", "xyz"};
+        List<String> resultList = new ArrayList<>(demoArr.length);
+
+        Collections.addAll(resultList, demoArr);
+        System.out.println(StringUtils.join(resultList, ","));
+        demoArr[1] = "mno";
+        System.out.println(StringUtils.join(resultList, ","));
     }
 }
