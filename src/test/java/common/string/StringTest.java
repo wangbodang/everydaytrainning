@@ -87,4 +87,14 @@ public class StringTest {
             System.out.println(xmmc.substring(i*bzLineCounts, (i+1)*bzLineCounts));
         }
     }
+
+    @Test
+    public void testStringCompare(){
+        String str1 = "201901";
+        String str2 = "201902";
+        /*if(str2.compareTo(str1)>0){
+            System.out.println(str2+">"+str1);
+        }*/
+        System.out.println(str2.compareTo(str1));
+    }
 }
