@@ -1,5 +1,8 @@
 package common.poi;
 
+import common.util.MyExcelUtil;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +35,18 @@ public class CellTypeTest {
     @Test
     public void testCellType(){
         System.out.println("Fook");
+        HSSFSheet sheet1 = workbook.getSheetAt(0);
+        System.out.println("\n===>第一个sheet的名字是 : "+sheet1.getSheetName());
+        HSSFRow row5 = sheet1.getRow(5);
 
+        System.out.println(MyExcelUtil.getNumbicValueFromCell(row5.getCell(0)));
+        System.out.println(MyExcelUtil.getNumbicValueFromCell(row5.getCell(1)));
+        System.out.println(MyExcelUtil.getNumbicValueFromCell(row5.getCell(2)));
+
+        System.out.println("\n====>>>>>>>>>>>>>>>>>>>>>>>");
+
+        System.out.println(MyExcelUtil.getStringValueFromCell(row5.getCell(0)));
+        System.out.println(MyExcelUtil.getStringValueFromCell(row5.getCell(1)));
+        System.out.println(MyExcelUtil.getStringValueFromCell(row5.getCell(2)));
     }
 }
