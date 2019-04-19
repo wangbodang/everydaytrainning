@@ -84,12 +84,9 @@
           <artifactId>core</artifactId>
           <version>3.3.3</version>
       </dependency>
+      <!--
 
-
-
-
-
-
+      -->
       <dependency>
           <groupId>org.apache.poi</groupId>
           <artifactId>poi-scratchpad</artifactId>
@@ -149,6 +146,23 @@
           <artifactId>xstream</artifactId>
           <version>1.4.9</version>
       </dependency>
+      <!-- Redis -->
+      <dependency>
+          <groupId>#000000is.clients</groupId>
+          <artifactId>jedis</artifactId>
+          <version>2.1.0</version>
+      </dependency>
+      <dependency>
+          <groupId>commons-pool</groupId>
+          <artifactId>commons-pool</artifactId>
+          <version>1.6</version>
+      </dependency>
+      <dependency>
+          <groupId>com.bluejeans</groupId>
+          <artifactId>tomcat-redis-session-manager</artifactId>
+          <version>2.0.0</version>
+      </dependency>
+
 
 
   </dependencies>
