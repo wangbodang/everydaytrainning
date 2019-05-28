@@ -1,4 +1,4 @@
-package common.lamda;
+package common.java8;
 
 import org.junit.Test;
 
