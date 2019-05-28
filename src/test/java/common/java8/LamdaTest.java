@@ -40,4 +40,28 @@ public class LamdaTest {
             System.out.println(xxx + " - "+yyy);
         });
     }
+
+    @Test
+    public void test03(){
+        MathOperation addition = (int a, int b)-> a+b;
+        int r = addition.operation(1, 3);
+        System.out.println(r);
+    }
+
+    interface MathOperation {
+        int operation(int a, int b);
+    }
+
+    static String salutation = "Hello! ";
+
+    @Test
+    public void test04(){
+        GreetingService greetService1 = message ->
+                System.out.println(salutation + message);
+        greetService1.sayMessage("Runoob");
+    }
+
+    interface GreetingService {
+        void sayMessage(String message);
+    }
 }
