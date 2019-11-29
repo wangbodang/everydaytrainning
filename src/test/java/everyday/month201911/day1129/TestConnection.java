@@ -8,6 +8,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * 这个demo是测试Connection在连续事务中，如果有一个抛异常， 其他是否提交
+ */
 public class TestConnection {
 
     @Test
