@@ -2,7 +2,11 @@ package base.annotation;
 
 import common.annotation.Column;
 import common.annotation.Table;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Setter
 @Getter

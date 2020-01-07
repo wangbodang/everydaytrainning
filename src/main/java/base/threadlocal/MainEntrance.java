@@ -1,7 +1,5 @@
 package base.threadlocal;
 
-import common.util.MyThreadUtil;
-
 public class MainEntrance {
 
     public static void main(String[] args) throws InterruptedException {
