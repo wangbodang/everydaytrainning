@@ -2,6 +2,7 @@ package common.tools;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
+import javax.sql.DataSource;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,16 +31,25 @@ public class TestDbTool {
             testBds.setUsername(dbProp.getProperty("jdbc_username_t"));
             testBds.setPassword(dbProp.getProperty("jdbc_password_t"));
             testBds.setInitialSize(50);
+            testBds.setMaxActive(255);
 
             sampleBds.setDriverClassName(dbProp.getProperty("jdbc_driver"));
             sampleBds.setUrl(dbProp.getProperty("jdbc_url_sample"));
             sampleBds.setUsername(dbProp.getProperty("jdbc_username_s"));
             sampleBds.setPassword(dbProp.getProperty("jdbc_password_s"));
             sampleBds.setInitialSize(50);
+            sampleBds.setMaxActive(255);
             
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static DataSource getTestDataSource(){
+        return testBds;
+    }
+    public static DataSource getSampleDataSource(){
+        return sampleBds;
     }
     public static Connection getTestConn(){
         try {

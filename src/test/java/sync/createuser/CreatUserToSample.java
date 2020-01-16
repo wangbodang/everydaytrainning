@@ -37,10 +37,7 @@ public class CreatUserToSample {
         dataSource.setUrl(urlS);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        dataSource.setMaxActive(150);                    //设置最大连接数
-        dataSource.setInitialSize(10);                  //设置初始化连接数
-        dataSource.setMaxIdle(8);                       //当空闲下载的时候，连接最大数量
-        dataSource.setMinIdle(5);                       //当空闲时间过长后，变为最小空闲
+        dataSource.setMaxActive(2000);                    //设置最大连接数
         dataSourceSample = dataSource;
     }
 
@@ -120,7 +117,7 @@ public class CreatUserToSample {
      * @param connSample
      */
     private void writeToSampleByGroup(List<Map<String, Object>> empList, Connection connSample, DataSource dataSourceSample) throws SQLException {
-        int step = 10000; //分组的步长为 10000
+        int step = 12000; //分组的步长为 10000
         int count = empList.size()/step + ((empList.size()%step==0)?0:1);
         System.out.println("步长 : "+step+", 共分为 : "+count+" 段");
 
